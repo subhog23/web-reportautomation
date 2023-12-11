@@ -13,22 +13,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vg.resource.webreportautomation.entity.vgGadEntity;
 import com.vg.resource.webreportautomation.helper.GadHelper;
 import com.vg.resource.webreportautomation.service.GadService;
 
+@RestController
 public class GadController {
 	@Autowired
 	private GadService gadService;
-	
-	@GetMapping("/home")
-	public String home() {
-		return "This is home";
-	}
-	
-	
+
 	@PostMapping(path="/Gad/upload/",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<?> upload(@RequestPart("file") MultipartFile file)
 	{
