@@ -59,7 +59,7 @@ public class SourcelHelp {
 					sourceExcelData.setRoleStartDate(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_ROLE_START_DATE))));
 					sourceExcelData.setRoleEndDate(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_ROLE_END_DATE))));
 					sourceExcelData.setTotalContractAmount(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_TOTAL_CONTRACT_AMOUNT))));
-					sourceExcelData.setComment(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_COMMENT))));
+				//	sourceExcelData.setComment(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_COMMENT))));
 					sourceExcelData.setExhibit_type(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_EXHIBIT_TYPE))));
 					sourceExcelData.setResourc_type(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_RESOURCE_TYPE))));
 					sourceExcelData.setPaymentType(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_PAYMENT_TYPE))));

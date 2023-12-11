@@ -50,7 +50,7 @@ public interface ReportUtil {
 		    public final String HC_REPORT_SKILL= "SKILL"; 
 		    public final String HC_REPORT_PRACTICE= "PRACTICE"; 
 		    public final String HC_REPORT_SUB_PRACTICE= "SUB PRACTICE";
-		    public final String HC_REPORT_PO= "PO"; 
+		    public final String HC_REPORT_PO= "PO#"; 
 		    public final String HC_REPORT_SOW_NAME= "SOW NAME"; 
 		    public final String HC_REPORT_SOW_ID= "SOW ID"; 
 		    public final String HC_REPORT_SOW_START_DATE= "SOW START DATE"; 
@@ -66,7 +66,7 @@ public interface ReportUtil {
 		    public final String HC_REPORT_LOCATION_VG= "LOCATION VG"; 
 		    public final String HC_REPORT_TOTAL_CONTRACT_AMOUNT= "TOTAL CONTRACT AMOUNT";
 		    public final String HC_REPORT_PAYMENT_TYPE= "PAYMENT TYPE"; 
-		    public final String HC_REPORT_COMMENT= "COMMENT"; 
+		    public final String HC_REPORT_COMMENT= "COMMENTS(IF ANY)"; 
 		    public final String HC_REPORT_SBU= "SBU";
 		    public final String HC_REPORT_LOB= "LOB"; 
 		    public final String HC_REPORT_DE= "DE";
@@ -90,11 +90,11 @@ public interface ReportUtil {
 		    public final String HC_REPORT_DESIGNATION_GRADE="DESIGNATION/GRADE";
 		    public final String HC_REPORT_SUPERVISOR_NAME = "SUPERVISOR NAME";
 		    public final String HC_REPORT_FS_NONFS_SUBK= "FS/NON FS/SUBK";
-			public final String HC_REPORT_TEXT_COST_CENTER= "COST CENTER TEXT";
+			public final String HC_REPORT_TEXT_COST_CENTER= "GAD COST CENTER";
 			public final String HC_REPORT_JOB_ROLE_INPUT= "JOB TITLE/ROLE (PLEASE USE DROP DOWN SELECTION)"; 			
 		    public final String HC_REPORT_PROJECT_NUMBER= "PROJECT NUMBER"; 
 			public final String HC_REPORT_LOCATION_INPUT= "LOCATION";
-			public final String HC_REPORT_PRIMARY_SKILLS="Primary Skills";
+			public final String HC_REPORT_PRIMARY_SKILLS="PRIMARY SKILLS";
 	    
 
 } 
