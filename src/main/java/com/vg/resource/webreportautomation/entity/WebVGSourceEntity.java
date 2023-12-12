@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 @Table(name = "\"VG_SOURCE\"")
 @Entity
-public class VGSourceEntity {
+public class WebVGSourceEntity {
 
 	@Id
 	@Column(name="\"GGID\"")

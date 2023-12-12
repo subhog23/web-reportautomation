@@ -1,6 +1,6 @@
 package com.vg.resource.webreportautomation.util;
 
-public interface ReportUtil {
+public interface WebReportUtil {
 	public final String FSquery="SELECT Distinct  \"VG_GAD_DATA\".\"LI_LR_ID\" , \"SOW_MASTER\".\"SOW_NAME\",\"VG_GAD_DATA\".\"CAP_EMAIL_ID\" ,\"VG_GAD_DATA\".\"CG MANAGER\" , " +
 			    "\"VG_GAD_DATA\".\"GRADE_REVISED\" ,\"VG_GAD_DATA\".\"LOCAL_GRADE\" , \"VG_GAD_DATA\".\"REGION\" , \"VG_GAD_DATA\".\"REGION_REVISED\","+
 			    "\"VG_GAD_DATA\".\"GAD_COST_CENTER\" ,\"VG_GAD_DATA\".\"PROJECT_CODE\" ,\"VG_GAD_DATA\".\"PROJECT_NAME\", \"VG_GAD_DATA\".\"PRACTICE\","+

@@ -15,11 +15,11 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.vg.resource.webreportautomation.entity.VGVdiDetailEntity;
-import com.vg.resource.webreportautomation.util.ReportUtil;
+import com.vg.resource.webreportautomation.entity.WebVGVdiDetailEntity;
+import com.vg.resource.webreportautomation.util.WebReportUtil;
 
 
-public class VGVdiDetailHelper {
+public class WebVGVdiDetailHelper {
 	
 	public static boolean checkExcelFormat(MultipartFile file)
 	{
@@ -31,9 +31,9 @@ public class VGVdiDetailHelper {
 		return false;
 	}
 	
-	public static List<VGVdiDetailEntity> convertExceltoList(InputStream is)
+	public static List<WebVGVdiDetailEntity> convertExceltoList(InputStream is)
 	{
-		List<VGVdiDetailEntity> list = new ArrayList<>();
+		List<WebVGVdiDetailEntity> list = new ArrayList<>();
 		Map<String, Integer> requiredHeaders = new HashMap<>();
 		try {
 			DataFormatter formatter = new DataFormatter();
@@ -44,14 +44,14 @@ public class VGVdiDetailHelper {
 			}
 			for (int i = 1; i <= sheet.getLastRowNum(); i++) {
 				Row row = sheet.getRow(i);
-				VGVdiDetailEntity vdidata = new VGVdiDetailEntity();							
-				vdidata.setVdi_ggid(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_ID))).toString());
-				vdidata.setResource_name(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_RESOURCE_NAME))));
-				vdidata.setVg_email_id(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_VG_EMAIL_ID))));
-				vdidata.setVdi_name(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_VDI_NAME))));
-				vdidata.setStatus(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_STATUS))));
-				vdidata.setOdc_location(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_ODC_LOCATION))));				
-				vdidata.setLwd(formatter.formatCellValue(row.getCell(requiredHeaders.get(ReportUtil.HC_REPORT_LWD))));				
+				WebVGVdiDetailEntity vdidata = new WebVGVdiDetailEntity();							
+				vdidata.setVdi_ggid(formatter.formatCellValue(row.getCell(requiredHeaders.get(WebReportUtil.HC_REPORT_ID))).toString());
+				vdidata.setResource_name(formatter.formatCellValue(row.getCell(requiredHeaders.get(WebReportUtil.HC_REPORT_RESOURCE_NAME))));
+				vdidata.setVg_email_id(formatter.formatCellValue(row.getCell(requiredHeaders.get(WebReportUtil.HC_REPORT_VG_EMAIL_ID))));
+				vdidata.setVdi_name(formatter.formatCellValue(row.getCell(requiredHeaders.get(WebReportUtil.HC_REPORT_VDI_NAME))));
+				vdidata.setStatus(formatter.formatCellValue(row.getCell(requiredHeaders.get(WebReportUtil.HC_REPORT_STATUS))));
+				vdidata.setOdc_location(formatter.formatCellValue(row.getCell(requiredHeaders.get(WebReportUtil.HC_REPORT_ODC_LOCATION))));				
+				vdidata.setLwd(formatter.formatCellValue(row.getCell(requiredHeaders.get(WebReportUtil.HC_REPORT_LWD))));				
 				list.add(vdidata);
 			}
 			

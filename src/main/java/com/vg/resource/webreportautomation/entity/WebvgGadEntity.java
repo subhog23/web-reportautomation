@@ -9,7 +9,7 @@ import lombok.Data;
 	@Data
 	@Table(name = "\"VG_GAD_DATA\"")
 	@Entity
-	public class vgGadEntity {
+	public class WebvgGadEntity {
 		@Id
 		@Column(name="\"GGID\"")
 		private String ggid;

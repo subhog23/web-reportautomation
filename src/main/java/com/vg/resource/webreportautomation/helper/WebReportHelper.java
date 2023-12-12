@@ -4,7 +4,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class ReportHelper {
+public class WebReportHelper {
 	
 	private String ggid;
 	private String li_lr_id;

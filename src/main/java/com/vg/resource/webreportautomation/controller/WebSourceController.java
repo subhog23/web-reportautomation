@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,44 +17,48 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.vg.resource.webreportautomation.entity.vgGadEntity;
-import com.vg.resource.webreportautomation.helper.GadHelper;
-import com.vg.resource.webreportautomation.service.GadService;
+import com.vg.resource.webreportautomation.entity.WebVGSourceEntity;
+import com.vg.resource.webreportautomation.helper.WebSourcelHelp;
+import com.vg.resource.webreportautomation.service.WebSourceService;
 
 @RestController
-public class GadController {
+@CrossOrigin("*")
+public class WebSourceController {
 	@Autowired
-	private GadService gadService;
-
-	@PostMapping(path="/Gad/upload/",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+	private WebSourceService sourcService;
+	
+	
+	@PostMapping(path="/source/upload/",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<?> upload(@RequestPart("file") MultipartFile file)
 	{
-		if(GadHelper.checkExcelFormat(file))
+		if(WebSourcelHelp.checkExcelFormat(file))
 		{
-			this.gadService.save(file);
+			this.sourcService.save(file);
 			return ResponseEntity.status(HttpStatus.OK).body("Successfull");
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Upload Excel file only");
 	}
 	
-	@GetMapping("/Gad")
-	public List<vgGadEntity> getAllData()
+	
+	@GetMapping("source/")
+	public List<WebVGSourceEntity> getAllData()
 		{
-			return this.gadService.getAllData();
+			return this.sourcService.getAllData();
 		}
-	@GetMapping("/Gad/{ggid}")  
-	private vgGadEntity getvgGad(@PathVariable("ggid") String ggid)   
+	@GetMapping("/source/{ggId}")  
+	private WebVGSourceEntity getVGSource(@PathVariable("gGId") String ggid)   
 	{  
-		return gadService.getvgGadById(ggid);
+		return sourcService.getVGSourceById(ggid);
 	}  
 
-	@DeleteMapping("/Gad/{ggid}")  
-	private void deleteGGID(@PathVariable("ggid") String ggid)   
+	@DeleteMapping("/source/{gGId}")  
+	private void deleteGGID(@PathVariable("gGId") String ggid)   
 	{  
-		gadService.delete(ggid);  
+		sourcService.delete(ggid);  
 	}  
-	@PutMapping("/Gad/updateData")
-	public vgGadEntity updateData(@RequestBody vgGadEntity vggadEntity) {
-		return gadService.savevgGadEntity(vggadEntity);
+	@PutMapping("/source/updateData")
+	public WebVGSourceEntity updateData(@RequestBody WebVGSourceEntity vgSourceEntity) {
+		return sourcService.savevgSourceEntity(vgSourceEntity);
 	}
+
 }

@@ -7,23 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.vg.resource.webreportautomation.entity.VGSourceEntity;
-import com.vg.resource.webreportautomation.helper.SourcelHelp;
-import com.vg.resource.webreportautomation.repo.VGSourcRepo;
+import com.vg.resource.webreportautomation.entity.WebVGSourceEntity;
+import com.vg.resource.webreportautomation.helper.WebSourcelHelp;
+import com.vg.resource.webreportautomation.repo.WebVGSourcRepo;
 
 
 
 @Service
-public class SourceService {
+public class WebSourceService {
 	@Autowired
-	private VGSourcRepo sourcingRepo;
+	private WebVGSourcRepo sourcingRepo;
 	
 	
 	public void save(MultipartFile file)
 	{
 		try
 		{
-			List<VGSourceEntity> sourceData = SourcelHelp.convertExceltoList(file.getInputStream());
+			List<WebVGSourceEntity> sourceData = WebSourcelHelp.convertExceltoList(file.getInputStream());
 			this.sourcingRepo.saveAll(sourceData);
 			
 		}
@@ -33,12 +33,12 @@ public class SourceService {
 		}
 	}
 	
-	public List<VGSourceEntity> getAllData()
+	public List<WebVGSourceEntity> getAllData()
 	{
 		return this.sourcingRepo.findAll();
 	}
 	
-	public VGSourceEntity getVGSourceById(String gGId)   
+	public WebVGSourceEntity getVGSourceById(String gGId)   
 	{  
 	return sourcingRepo.findById(gGId).orElse(null);  
 	}  
@@ -48,8 +48,8 @@ public class SourceService {
 		sourcingRepo.deleteById(gGId);
 		return "sourcing data removed "+gGId;
 	}
-	public VGSourceEntity updateSource(VGSourceEntity vgSourceEntity) {
-		VGSourceEntity existingData=sourcingRepo.findById(vgSourceEntity.getGGId()).orElse(null);
+	public WebVGSourceEntity updateSource(WebVGSourceEntity vgSourceEntity) {
+		WebVGSourceEntity existingData=sourcingRepo.findById(vgSourceEntity.getGGId()).orElse(null);
 		existingData.setResourceName(vgSourceEntity.getResourceName());
 		existingData.setLevel(vgSourceEntity.getLevel());
 		existingData.setJobRole(vgSourceEntity.getJobRole());
@@ -73,7 +73,7 @@ public class SourceService {
 	
 	}
 
-	public VGSourceEntity savevgSourceEntity(VGSourceEntity vgSourceEntity) {
+	public WebVGSourceEntity savevgSourceEntity(WebVGSourceEntity vgSourceEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -12,7 +12,7 @@ import lombok.Data;
 @Table(name = "\"VG_NON_FS_MASTER_DATA\"")
 @Entity
 @Data
-public class VGNonFSEntity {
+public class WebVGNonFSEntity {
 
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

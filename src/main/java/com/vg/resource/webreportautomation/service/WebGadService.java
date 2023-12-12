@@ -6,21 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.vg.resource.webreportautomation.entity.vgGadEntity;
-import com.vg.resource.webreportautomation.helper.GadHelper;
-import com.vg.resource.webreportautomation.repo.vgGadRepo;
+import com.vg.resource.webreportautomation.entity.WebvgGadEntity;
+import com.vg.resource.webreportautomation.helper.WebGadHelper;
+import com.vg.resource.webreportautomation.repo.WebvgGadRepo;
 
 @Service
-public class GadService {
+public class WebGadService {
 	@Autowired
-	private vgGadRepo vggadRepo;
+	private WebvgGadRepo vggadRepo;
 	
 	
 	public void save(MultipartFile file)
 	{
 		try
 		{
-			List<vgGadEntity> vggadData = GadHelper.convertExceltoList(file.getInputStream());
+			List<WebvgGadEntity> vggadData = WebGadHelper.convertExceltoList(file.getInputStream());
 			this.vggadRepo.saveAll(vggadData);
 			
 		}
@@ -30,11 +30,11 @@ public class GadService {
 		}
 	}
 	
-	public List<vgGadEntity> getAllData()
+	public List<WebvgGadEntity> getAllData()
 	{
 		return this.vggadRepo.findAll();
 	}
-	public vgGadEntity getvgGadById(String ggid)   
+	public WebvgGadEntity getvgGadById(String ggid)   
 	{  
 	return vggadRepo.findById(ggid).orElse(null);  
 	}  
@@ -44,8 +44,8 @@ public class GadService {
 		vggadRepo.deleteById(ggid);
 		return "VGGAD data removed "+ggid;
 	}
-	public vgGadEntity updatevgGaddata(vgGadEntity vggadEntity) {
-		vgGadEntity existingData=vggadRepo.findById(vggadEntity.getGgid()).orElse(null);
+	public WebvgGadEntity updatevgGaddata(WebvgGadEntity vggadEntity) {
+		WebvgGadEntity existingData=vggadRepo.findById(vggadEntity.getGgid()).orElse(null);
 		existingData.setLi_lrId(vggadEntity.getLi_lrId());
 		existingData.setCapEmailid(vggadEntity.getCapEmailid());
 		existingData.setGraderevised(vggadEntity.getGraderevised());
@@ -69,7 +69,7 @@ public class GadService {
 	
 	}
 
-	public vgGadEntity savevgGadEntity(vgGadEntity vggadEntity) {
+	public WebvgGadEntity savevgGadEntity(WebvgGadEntity vggadEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

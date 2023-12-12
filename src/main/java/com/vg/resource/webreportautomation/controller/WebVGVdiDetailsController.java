@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,21 +17,22 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.vg.resource.webreportautomation.entity.VGVdiDetailEntity;
-import com.vg.resource.webreportautomation.helper.VGVdiDetailHelper;
-import com.vg.resource.webreportautomation.service.vgVdiDetailService;
+import com.vg.resource.webreportautomation.entity.WebVGVdiDetailEntity;
+import com.vg.resource.webreportautomation.helper.WebVGVdiDetailHelper;
+import com.vg.resource.webreportautomation.service.WebvgVdiDetailService;
 
 
 @RestController
-public class VGVdiDetailsController {
+@CrossOrigin("*")
+public class WebVGVdiDetailsController {
 	@Autowired
-	private vgVdiDetailService vgvdiDetailService;
+	private WebvgVdiDetailService vgvdiDetailService;
 	
 	
 	@PostMapping(path="/vgvdi/upload/",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<?> upload(@RequestPart("file") MultipartFile file)
 	{
-		if(VGVdiDetailHelper.checkExcelFormat(file))
+		if(WebVGVdiDetailHelper.checkExcelFormat(file))
 		{
 			this.vgvdiDetailService.save(file);
 			return ResponseEntity.status(HttpStatus.OK).body("Successfull");
@@ -39,13 +41,13 @@ public class VGVdiDetailsController {
 	}
 
 	@GetMapping("/vgvdi/")
-	public List<VGVdiDetailEntity> getAllData()
+	public List<WebVGVdiDetailEntity> getAllData()
 		{
 			return this.vgvdiDetailService.getAllData();
 		}
 	
 	@GetMapping("/vgvdi/{ggid}")  
-	private VGVdiDetailEntity getVGVdidetail(@PathVariable("ggid") String ggid)   
+	private WebVGVdiDetailEntity getVGVdidetail(@PathVariable("ggid") String ggid)   
 	{  
 	return vgvdiDetailService.getVGVdiDetailById(ggid);
 	}  
@@ -57,7 +59,7 @@ public class VGVdiDetailsController {
 	}  
 	
 	@PutMapping("/vgvdi/updateData")
-	public VGVdiDetailEntity updateData(@RequestBody VGVdiDetailEntity vgvdiDetailEntity) {
+	public WebVGVdiDetailEntity updateData(@RequestBody WebVGVdiDetailEntity vgvdiDetailEntity) {
 		return vgvdiDetailService.saveVGVdiDetailEntity(vgvdiDetailEntity);
 	}
 }

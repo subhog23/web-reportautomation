@@ -16,11 +16,11 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 
-import com.vg.resource.webreportautomation.helper.ReportHelper;
+import com.vg.resource.webreportautomation.helper.WebReportHelper;
 
 
-public class ReportUtilHelper {
-	public  static List<ReportHelper> readFSDataFromDatabase() throws SQLException{
+public class WebReportUtilHelper {
+	public  static List<WebReportHelper> readFSDataFromDatabase() throws SQLException{
 		try{
 			Class.forName("org.postgresql.Driver");
 		}catch(ClassNotFoundException e){
@@ -30,15 +30,15 @@ public class ReportUtilHelper {
 		}
 		Connection connection = null;
 		Statement stmt = null;
-		List<ReportHelper> listOfReport = new ArrayList<>(); 
-		ReportHelper helper = null;
+		List<WebReportHelper> listOfReport = new ArrayList<>(); 
+		WebReportHelper helper = null;
 		try{
 			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/ReportAutomation", "postgres", "admin");
 			stmt = connection.createStatement();
-            System.out.println(ReportUtil.FSquery);
-			ResultSet fsRs = stmt.executeQuery(ReportUtil.FSquery);
+            System.out.println(WebReportUtil.FSquery);
+			ResultSet fsRs = stmt.executeQuery(WebReportUtil.FSquery);
 			while(fsRs.next()){
-				helper = new ReportHelper();
+				helper = new WebReportHelper();
 				helper.setGgid(fsRs.getString("GGID"));
                 helper.setLi_lr_id(fsRs.getString("LI_LR_ID"));
                 helper.setLocal_grade(fsRs.getString("LOCAL_GRADE"));
@@ -95,7 +95,7 @@ public class ReportUtilHelper {
 	}
 
     // .....................................................NON FS........................................................
-    public  static List<ReportHelper> readNonFSDataFromDatabase() throws SQLException{
+    public  static List<WebReportHelper> readNonFSDataFromDatabase() throws SQLException{
 		try{
 			Class.forName("org.postgresql.Driver");
 		}catch(ClassNotFoundException e){
@@ -105,15 +105,15 @@ public class ReportUtilHelper {
 		}
 		Connection connection = null;
 		Statement stmt = null;
-		List<ReportHelper> listOfReport = new ArrayList<>(); 
-		ReportHelper helper = null;
+		List<WebReportHelper> listOfReport = new ArrayList<>(); 
+		WebReportHelper helper = null;
 		try{
 			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/ReportAutomation", "postgres", "admin");
 			stmt = connection.createStatement();
-            System.out.println(ReportUtil.NonFsquery);
-			ResultSet rs = stmt.executeQuery(ReportUtil.NonFsquery);
+            System.out.println(WebReportUtil.NonFsquery);
+			ResultSet rs = stmt.executeQuery(WebReportUtil.NonFsquery);
 			while(rs.next()){
-				helper = new ReportHelper();
+				helper = new WebReportHelper();
 				helper.setGgid(rs.getString("GGID"));
                 helper.setLi_lr_id(rs.getString("LI_LR_ID"));
                 helper.setGrade_revised(rs.getString("GRADE_REVISED"));

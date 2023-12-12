@@ -6,22 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.vg.resource.webreportautomation.entity.VGVdiDetailEntity;
-import com.vg.resource.webreportautomation.helper.VGVdiDetailHelper;
-import com.vg.resource.webreportautomation.repo.vgVdiDetailRepo;
+import com.vg.resource.webreportautomation.entity.WebVGVdiDetailEntity;
+import com.vg.resource.webreportautomation.helper.WebVGVdiDetailHelper;
+import com.vg.resource.webreportautomation.repo.WebvgVdiDetailRepo;
 
 @Service
-public class vgVdiDetailService {
+public class WebvgVdiDetailService {
 	
 	@Autowired
-	private vgVdiDetailRepo vgvdidetailRepo;
+	private WebvgVdiDetailRepo vgvdidetailRepo;
 	
 	
 	public void save(MultipartFile file)
 	{
 		try
 		{
-			List<VGVdiDetailEntity> sourceData = VGVdiDetailHelper.convertExceltoList(file.getInputStream());
+			List<WebVGVdiDetailEntity> sourceData = WebVGVdiDetailHelper.convertExceltoList(file.getInputStream());
 			this.vgvdidetailRepo.saveAll(sourceData);
 			
 		}
@@ -31,12 +31,12 @@ public class vgVdiDetailService {
 		}
 	}
 	
-	public List<VGVdiDetailEntity> getAllData()
+	public List<WebVGVdiDetailEntity> getAllData()
 	{
 		return this.vgvdidetailRepo.findAll();
 	}
 	
-	public VGVdiDetailEntity getVGVdiDetailById(String ggid)   
+	public WebVGVdiDetailEntity getVGVdiDetailById(String ggid)   
 	{  
 	return vgvdidetailRepo.findById(ggid).orElse(null);  
 	}  
@@ -47,8 +47,8 @@ public class vgVdiDetailService {
 		return "VGVDIDeatils data removed "+ggid;
 	}
 	
-	public VGVdiDetailEntity updateVgVdiDetails(VGVdiDetailEntity vgvdiDetailEntity) {
-		VGVdiDetailEntity existingData=vgvdidetailRepo.findById(vgvdiDetailEntity.getVg_email_id()).orElse(null);
+	public WebVGVdiDetailEntity updateVgVdiDetails(WebVGVdiDetailEntity vgvdiDetailEntity) {
+		WebVGVdiDetailEntity existingData=vgvdidetailRepo.findById(vgvdiDetailEntity.getVg_email_id()).orElse(null);
 		existingData.setVdi_ggid(vgvdiDetailEntity.getVdi_ggid());
 		existingData.setResource_name(vgvdiDetailEntity.getResource_name());
 		existingData.setVg_email_id(vgvdiDetailEntity.getVg_email_id());
@@ -59,7 +59,7 @@ public class vgVdiDetailService {
 		return vgvdidetailRepo.save(existingData);
 	}
 
-	public VGVdiDetailEntity saveVGVdiDetailEntity(VGVdiDetailEntity vgvdiDetailEntity) {
+	public WebVGVdiDetailEntity saveVGVdiDetailEntity(WebVGVdiDetailEntity vgvdiDetailEntity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

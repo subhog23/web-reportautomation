@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 @Table(name = "\"VG_VDI_DETAIL\"")
 @Entity
-public class VGVdiDetailEntity {
+public class WebVGVdiDetailEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="\"SR.NO\"")

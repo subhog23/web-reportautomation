@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,21 +17,22 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.vg.resource.webreportautomation.entity.VGNonFSEntity;
-import com.vg.resource.webreportautomation.helper.NonFSHelp;
-import com.vg.resource.webreportautomation.service.NonFSService;
+import com.vg.resource.webreportautomation.entity.WebVGNonFSEntity;
+import com.vg.resource.webreportautomation.helper.WebNonFSHelp;
+import com.vg.resource.webreportautomation.service.WebNonFSService;
 
 @RestController
-public class NonFsController {
+@CrossOrigin("*")
+public class WebNonFsController {
 
 	@Autowired
-	private NonFSService nonFSService;
+	private WebNonFSService nonFSService;
 	
 	
 	@PostMapping(path="/nonfs/upload/",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<?> upload(@RequestPart("file") MultipartFile file)
 	{
-		if(NonFSHelp.checkExcelFormat(file))
+		if(WebNonFSHelp.checkExcelFormat(file))
 		{
 			this.nonFSService.save(file);
 			return ResponseEntity.status(HttpStatus.OK).body("Successfull");
@@ -39,12 +41,12 @@ public class NonFsController {
 	}
 
 	@GetMapping("/nonfs/")
-	public List<VGNonFSEntity> getAllData()
+	public List<WebVGNonFSEntity> getAllData()
 		{
 			return this.nonFSService.getAllData();
 		}
 	@GetMapping("/nonfs/{empID}")  
-	private VGNonFSEntity getNonFs(@PathVariable("empID") String ggid)   
+	private WebVGNonFSEntity getNonFs(@PathVariable("empID") String ggid)   
 	{  
 		return nonFSService.getNonFsById(ggid);
 	}  
@@ -56,7 +58,7 @@ public class NonFsController {
 	}  
 	
 	@PutMapping("/nonfs/updateData/")
-	public VGNonFSEntity updateData(@RequestBody VGNonFSEntity vgNonFSEntity) {
+	public WebVGNonFSEntity updateData(@RequestBody WebVGNonFSEntity vgNonFSEntity) {
 		return nonFSService.savevgNonFSEntity(vgNonFSEntity);
 	}
 
